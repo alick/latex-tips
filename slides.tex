@@ -1,0 +1,640 @@
+\documentclass[CJKchecksingle]{beamer}
+% pass CJKchecksingle to xeCJK
+% Author: alick<alick9188@gmail.com>
+% 带中文支持的、使用 Beamer 的幻灯片模板
+% 使用 xelatex 编译
+
+% This file is modified from a solution template for:
+
+% - Giving a talk on some subject.
+% - The talk is between 15min and 45min long.
+% - Style is ornate.
+
+% Copyright 2004 by Till Tantau <tantau@users.sourceforge.net>.
+%
+% In principle, this file can be redistributed and/or modified under
+% the terms of the GNU Public License, version 2.
+%
+% However, this file is supposed to be a template to be modified
+% for your own needs. For this reason, if you use this file as a
+% template and not specifically distribute it as part of a another
+% package/program, I grant the extra permission to freely copy and
+% modify this file as you see fit and even to delete this copyright
+% notice.
+
+\mode<presentation>
+{
+\usetheme[secheader]{Boadilla}
+\setbeamercovered{transparent=5}
+\usefonttheme[onlymath]{serif}
+}
+
+\usepackage{graphicx} % includegraphics support
+%\graphicspath{{fig/}} % directories that hold graphics
+\usepackage{listings} % for typesetting source code
+\usepackage{amsmath} % for math
+\usepackage{siunitx} % for si units
+\usepackage{hologo}
+\usepackage[style=numeric,sorting=none,firstinits=false]{biblatex}
+\addbibresource{refs.bib}
+
+\usepackage{fontspec}
+%\usepackage[UTF8,nofonts]{ctex}
+%
+%% xeCJK conf setup
+%\punctstyle{kaiming}
+%\renewcommand\CJKfamilydefault{\CJKsfdefault} % for slides
+%
+%\setCJKmainfont[BoldFont={WenQuanYi Micro Hei},
+%ItalicFont={AR PL UKai CN}]{AR PL UMing CN}
+%\setCJKsansfont{WenQuanYi Micro Hei}
+%\setCJKmonofont{WenQuanYi Micro Hei Mono}
+%
+%\setCJKfamilyfont{zhsong}{AR PL UMing CN}
+%\setCJKfamilyfont{zhhei}{WenQuanYi Zen Hei}
+%\setCJKfamilyfont{zhkai}{AR PL UKai CN}
+%
+%\newcommand*{\songti}{\CJKfamily{zhsong}} % 宋体
+%\newcommand*{\heiti}{\CJKfamily{zhhei}}   % 黑体
+%\newcommand*{\kaishu}{\CJKfamily{zhkai}}  % 楷书
+%
+%\renewcommand\tablename{表格}
+
+\title[\LaTeX\ Notes]%
+{Notes on Using \LaTeX}
+
+\author[alick] % (optional, use only with lots of authors)
+{Alick Zhao\\%
+\url{alick9188@gmail.com}}
+
+\institute[NiuLab] % (optional, but mostly needed)
+{
+NiuLab\\
+Department of Electronic Engineering\\
+Tsinghua University
+}
+% - Use the \inst command only if there are several affiliations.
+% - Keep it simple, no one is interested in your street address.
+
+\date % (optional)
+{}
+
+\subject{LaTeX, beamer, BibTeX}
+
+% Delete this, if you do not want the table of contents to pop up at
+% the beginning of each subsection:
+\AtBeginSection[]
+{
+  \begin{frame}<beamer>{Outline}
+    \tableofcontents[currentsection]
+  \end{frame}
+}
+
+
+% If you wish to uncover everything in a step-wise fashion, uncomment
+% the following command:
+
+%\beamerdefaultoverlayspecification{<+->}
+
+% listings setup
+\lstset{%
+language=[LaTeX]TeX,%
+basicstyle=\ttfamily\color{blue!50!black},%
+keywordstyle=\mdseries,%
+commentstyle=\ttfamily,%
+breaklines=true,%
+morekeywords={alert,text},%
+}
+\lstdefinestyle{cli}{%
+language=sh,
+basicstyle=\ttfamily,%
+}
+\lstdefinestyle{wrong}{%
+language=,
+basicstyle=\ttfamily\color{gray},%
+}
+% hyperref setup
+\hypersetup{
+%pdfpagemode=FullScreen,
+}
+
+\lstMakeShortInline|
+\newcommand{\env}[1]{\lstinline|#1|}
+\newcommand{\pkg}[1]{\texttt{#1}}
+
+\newcommand{\BibTeX}{\hologo{BibTeX}}
+\newcommand{\beamer}{\textsc{beamer}}
+
+\begin{document}
+
+\begin{frame}
+\titlepage
+\end{frame}
+
+\begin{frame}{Outline}
+\tableofcontents
+% You might wish to add the option [pausesections]
+\end{frame}
+
+% Since this a solution template for a generic talk, very little can
+% be said about how it should be structured. However, the talk length
+% of between 15min and 45min and the theme suggest that you stick to
+% the following rules:
+
+% - Exactly two or three sections (other than the summary).
+% - At *most* three subsections per section.
+% - Talk about 30s to 2min per frame. So there should be between about
+%   15 and 30 frames, all told.
+
+%\begin{frame}{Picture}
+%  \begin{figure}[h]
+%    \centering
+%    \includegraphics[scale=0.4]{foo.png}
+%    \caption{}
+%  \end{figure}
+%\end{frame}
+
+%\begin{frame}{Why \TeX\ (and why not)?}
+%  \begin{columns}[t]
+%    \begin{column}{.45\textwidth}
+%      \begin{block}{Pros}
+%        \begin{itemize}
+%          \item allow focusing on the content without bothering the
+%            layout(including TOC, references, etc)
+%          \item excel in typesetting math formular
+%          \item enhanced in many aspects
+%        \end{itemize}
+%      \end{block}
+%    \end{column}
+%
+%    \begin{column}{.45\textwidth}
+%      \begin{block}{Cons}
+%        \begin{itemize}
+%          \item not WYSIWYG
+%          \item not easy to be \TeX{}pert
+%            \bigskip
+%          \item only .doc permitted
+%        \end{itemize}
+%      \end{block}
+%    \end{column}
+%
+%  \end{columns}
+%\end{frame}
+
+
+\section{Basics}
+
+\subsection{Paragraphs}
+
+\begin{frame}[fragile]\frametitle{Sectioning the contents.}
+\begin{table}[h]
+  \centering
+  \caption{Sectioning commands~\cite{leoliu}.}
+  \begin{tabular}{rlp{.6\textwidth}}
+    \hline
+    Level & Command & Comment \\
+    \hline
+    -1 & |\part| & Optional top level. \\
+    0  & |\chapter| & Top level for documentclass \pkg{report}, \pkg{book}. \\
+    1  & |\section| & Top level for documentclass \pkg{article}. \\
+    2  & |\subsection| & \\
+    3  & |\subsubsection| & Neither numbered nor shown in \pkg{report}, \pkg{book} by default.\\
+    4  & |\paragraph| & Neither numbered nor shown by default.\\
+    5  & |\subparagraph| & Neither numbered nor shown by default.\\
+    \hline
+  \end{tabular}
+\end{table}
+
+  \begin{itemize}
+    \item |\appendix|
+    \item Documentclass \pkg{book}: |\frontmatter|, |\mainmatter|,
+      |\backmatter|
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]\frametitle{Do not abuse \lstinline|\\\\|.}
+
+\begin{itemize}
+\item
+  Not for new paragraph. Use blank lines instead.
+\item
+  Not commonly used for newline in paragraph. Let \TeX\ hyphen.
+\pause
+\item
+  Used inside \lstinline{\title} to tune word breaking.
+\item
+  Used inside \lstinline{\tabular}, multi-line formulas, etc.
+\end{itemize}
+
+\end{frame}
+
+\subsection{Figures}
+
+\begin{frame}\frametitle{Insert bitmap (PNG, JPG) figures.}
+
+\begin{itemize}
+\item
+  The whole figure file will be swallowed in the PDF.
+\item
+  DPI mismatch leads to blurring.
+\pause
+\item
+  Solutions~\cite{hoeppner,blurry,blurry2}:
+  \begin{itemize}
+    \item
+      Line drawings: \alert{vector graphics}, high dpi PNG
+    \item
+      Photos: (high resolution) JPEG should be OK
+    \item
+      Screenshots: zoom out first
+  \end{itemize}
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}[fragile]\frametitle{Specify figure/table/minipage size.}
+
+\begin{itemize}
+\item
+  Prefer relative length to absolute length.
+\item
+  Prefer \lstinline{.45\textwidth} to \lstinline{2in}, \lstinline{3cm}.
+\item
+  \lstinline{\textheight}, \lstinline{\paperheight}, \lstinline{\paperwidth}
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}[fragile]\frametitle{Deal with subfigures.}
+
+\begin{itemize}
+\item
+  Prefer \pkg{subcaption} package.
+\item
+  Use \pkg{subfig} with \pkg{IEEEtran} articles.
+\item
+  Do not use deprecated \pkg{subfigure} package.
+\end{itemize}
+
+\end{frame}
+
+\subsection{Math \& Science}
+
+\begin{frame}[fragile]\frametitle{Compose math formulas.}
+
+\begin{itemize}
+\item
+  Variables: use common notations, introduce them
+\item
+  Vectors/Matrices in bold: \pkg{bm}, \lstinline{\mathbf}
+\item
+  Non-variables should not be \textit{italic}:
+  \begin{itemize}
+    \item |R_{\max}| $R_{\max}$
+    \item |\text{SINR}| $\text{SINR}$
+    \item |\mathrm{e}^{\mathrm{i}\pi}+1=0|
+      $\mathrm{e}^{\mathrm{i}\pi}+1=0$
+  \end{itemize}
+\item
+  Proper brackets size: |\left( \sum \ldots \right)|
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}[fragile]\frametitle{Handle long math formulas.}
+
+\begin{itemize}
+\item
+  Define intermediate variables/functions to rephrase.
+\item
+  Divide it into multiple lines.
+\item
+  Environments: \env{multline}, \env{split}, \env{array}
+\item
+  Match bracket size: |\vphantom|
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}[fragile]\frametitle{Write numbers with units.}
+
+\begin{itemize}
+\item
+  \pkg{siunitx} package:
+  \begin{itemize}
+    \item |\SI{9.8}{m/s^2}| \SI{9.8}{m/s^2}
+    \item |\SI{6.02e-23}{mol^{-1}}| \SI{6.02e-23}{mol^{-1}}
+  \end{itemize}
+\item
+  If \pkg{siunitx} is not possible:
+  \begin{itemize}
+    \item Write \lstinline{5~km}, not \lstinline{5km}.
+  \end{itemize}
+\end{itemize}
+
+\end{frame}
+
+\section{\BibTeX\ References}
+\subsection{Database}
+\begin{frame}[fragile]
+  \frametitle{Do not blindly copy bib export from websites! I}
+
+  \begin{itemize}
+    \item Common errors~\cite{biberrors}:
+      \begin{itemize}
+        \item<1->
+          Author names: \lstinline[style=wrong]|Owens, J.D.|
+          |John D. Owens|
+        \item<2->
+          Title case of title, booktitle
+\begin{lstlisting}[style=wrong]
+booktitle = {Proceedings of the second workshop on Software radio implementation forum},
+\end{lstlisting}
+\begin{lstlisting}
+booktitle = {Proceedings of the Second Workshop on Software Radio Implementation Forum},
+\end{lstlisting}%
+        \item<3->
+          Booktitle word order
+\begin{lstlisting}[style=wrong]
+booktitle={Intelligent Vehicles Symposium (IV), 2011 IEEE},
+\end{lstlisting}
+\begin{lstlisting}
+booktitle = {Proceedings of the 2011 IEEE Intelligent Vehicles Symposium},
+\end{lstlisting}
+\end{itemize}
+\end{itemize}
+\end{frame}
+\begin{frame}[fragile]
+  \frametitle{Do not blindly copy bib export from websites! II}
+  \begin{itemize}
+    \item Common errors continued:
+      \begin{itemize}
+        \item
+          Month, pages
+\begin{lstlisting}[style=wrong]
+month={june},
+pages={195 -200},
+\end{lstlisting}
+\begin{lstlisting}
+month=jun,
+pages={195--200},
+\end{lstlisting}
+\pause
+        \item
+          DOI, URL
+\begin{lstlisting}[style=wrong]
+url = {http://doi.acm.org/10.1145/1964179.1964185},
+doi = {http://doi.acm.org/10.1145/1964179.1964185},
+\end{lstlisting}
+\begin{lstlisting}
+doi = {10.1145/1964179.1964185},
+\end{lstlisting}
+      \end{itemize}
+    \pause
+    \item
+      Auto fix: \href{https://github.com/alick9188/fixbib}{FixBib
+      for Greasemonkey}
+  \end{itemize}
+
+\end{frame}
+
+\begin{frame}[fragile]\frametitle{Deal with bachelor thesis, patent, and others}
+
+\begin{itemize}
+  \item Bachelor's thesis: |masterthesis| entry with |type = {Bachelor's Thesis}|
+  \item White paper: |techreport| entry with |type = {White Paper}|
+  \item Patent, standard: \lstinline[style=cli]|IEEEtran.bst|
+    extension, \lstinline{misc} entry as fallback
+  \item Foreign references: \lstinline|note = {In Chinese.}|
+\end{itemize}
+
+\end{frame}
+
+
+\subsection{Citation}
+\begin{frame}[fragile]\frametitle{Citation}
+
+\begin{itemize}
+\item
+  Use tie (tilde, nbsp): \lstinline|Text goes~\cite{texbook}.|
+\item
+  Cite multiple references: |\cite{ref1,ref2,ref3}|
+\pause
+\item
+  Can citations in brackets used as text words?
+\end{itemize}
+
+\end{frame}
+
+\subsection{Compilation}
+
+\begin{frame}[fragile]\frametitle{How many times to run?}
+
+  \begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\textwidth]{bibcompilation}
+    \caption{\BibTeX\ compilation process.}
+  \end{figure}
+
+\begin{itemize}
+    \pause
+\item Automatic compilation:
+  \begin{itemize}
+    \item \lstinline[style=cli]{latexmk}, \lstinline[style=cli]|texify|
+    \item Makefile
+  \end{itemize}
+\end{itemize}
+
+\end{frame}
+
+\section{\beamer\ Slides}
+\subsection{Basics}
+\begin{frame}[fragile]\frametitle{Fonts}
+
+\begin{itemize}
+\item
+  Font family~\cite{beamer}: serif or sans-serif?
+\begin{itemize}
+  \item
+    Sans is preferred today.
+  \item
+    Serif may be used in conservative scenario.
+  \item
+    Math texts might be better in serif.
+    |\usefonttheme[onlymath]{serif}|
+\end{itemize}
+\pause
+\item
+  Prefer colored to italic texts.
+\begin{itemize}
+  \item |\alert{dangerours}| \alert{dangerours}
+  \item |\emph{dangerours}| \emph{dangerours}
+\end{itemize}
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}[fragile]\frametitle{Fragile frames}
+  \begin{itemize}
+    \item |\verb+Lorem Lipsum+|, \env{verbatim}
+    \item |\begin{frame}[fragile] ... \end{frame}|
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]\frametitle{Chinese}
+
+\begin{lstlisting}
+\documentclass[CJKchecksingle]{beamer}
+\usepackage[UTF8,nofonts]{ctex}
+\renewcommand\CJKfamilydefault{\CJKsfdefault}
+
+\setCJKmainfont[BoldFont={WenQuanYi Micro Hei},
+ItalicFont={AR PL UKai CN}]{AR PL UMing CN}
+\setCJKsansfont{WenQuanYi Micro Hei}
+\setCJKmonofont{WenQuanYi Micro Hei Mono}
+
+\setCJKfamilyfont{zhsong}{AR PL UMing CN}
+\setCJKfamilyfont{zhhei}{WenQuanYi Zen Hei}
+\setCJKfamilyfont{zhkai}{AR PL UKai CN}
+\newcommand*{\songti}{\CJKfamily{zhsong}}
+\newcommand*{\heiti}{\CJKfamily{zhhei}}
+\newcommand*{\kaishu}{\CJKfamily{zhkai}}
+\end{lstlisting}
+
+\end{frame}
+
+\subsection{Long Slides}
+\begin{frame}[fragile]\frametitle{Show (current) page numbers.}
+  \begin{itemize}
+    \item |\usetheme{Boadilla} % or Madrid, AnnArbor, ...|
+    \item |\useoutertheme{infolines}|
+    \item Simple customization:
+\begin{lstlisting}
+\setbeamertemplate{footline}
+{
+  \leavevmode%
+  \hbox{%
+  \begin{beamercolorbox}[wd=\paperwidth,ht=2.25ex,dp=1ex,right]{page number in head/foot}%
+    \insertframenumber{} / \inserttotalframenumber\hspace*{2ex}
+  \end{beamercolorbox}}%
+  \vskip0pt%
+}
+\end{lstlisting}
+  \end{itemize}
+\end{frame}
+
+\subsection{Customization}
+
+\begin{frame}[fragile,allowframebreaks]\frametitle{Footnote citations?}
+% Provide \notefullcite for footnote citations.
+% cf. http://www.texdev.net/2010/03/08/biblatex-numbered-citations-as-footnotes/
+
+% NOTE: for vanilla footnote coexistence, refer to
+% http://tex.stackexchange.com/questions/20754/tuning-numbered-citations-as-footnote
+% http://tex.stackexchange.com/questions/20787/biblatex-cite-with-footnote-only-once-with-use-of-brackets
+\begin{lstlisting}
+\usepackage[style=ieee]{biblatex}
+\ExecuteBibliographyOptions{citetracker=true,sorting=none}
+\AtEveryCitekey{%
+  \clearlist{publisher}%
+  \clearfield{note}}
+
+\DeclareFieldFormat{labelnumberwidth}{\mkbibbrackets{#1}}
+
+\makeatletter
+\renewcommand\@makefntext[1]{%
+  \normalfont[\@thefnmark]\enspace #1}
+\makeatother
+
+\DeclareCiteCommand{\notefullcite}[\mkbibbrackets]
+  {\usebibmacro{cite:init}%
+   \usebibmacro{prenote}}
+  {\usebibmacro{citeindex}%
+   \usebibmacro{notefullcite}%
+   \usebibmacro{cite:comp}}
+  {}
+  {\usebibmacro{cite:dump}%
+   \usebibmacro{postnote}}
+\newbibmacro*{notefullcite}{%
+  \ifciteseen
+    {}
+    {\footnotetext[\thefield{labelnumber}]{%
+       \usedriver{}{\thefield{entrytype}}.}}}
+
+
+% Decrease the footnote size.
+\let\oldfootnotesize\footnotesize
+\renewcommand*{\footnotesize}{\oldfootnotesize\tiny}
+
+% Disable the navigation symbol bar.
+\beamertemplatenavigationsymbolsempty
+
+% Add bib database.
+\addbibresource{refs.bib}
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]\frametitle{Create new templates}
+
+\begin{itemize}
+\item
+  Background pictures: |\usebackgroundtemplate|
+\item
+  Logo: |\logo|
+\item
+  Directory structure
+\begin{lstlisting}[style=cli]
+$ ls themes/
+color  font  inner  outer  theme
+\end{lstlisting}
+\pause
+\item
+  THU slides template?
+\end{itemize}
+
+\end{frame}
+
+\section{Summary}
+
+\begin{frame}\frametitle{Summary}
+
+\begin{itemize}
+\item
+  Details matter for aesthetic and high quality documents.
+\pause
+\item
+  \LaTeX\ is evolving. The old will be replaced by the new.
+\pause
+\item
+  Some work is tedious. Try automate it!
+\pause
+\item
+  Happy \TeX{}ing!
+\end{itemize}
+\nocite{l2tabu,elements}
+
+\end{frame}
+
+\appendix
+\section<presentation>*{\appendixname}
+\subsection<presentation>*{References}
+
+\begin{frame}[allowframebreaks]
+  \frametitle<presentation>{More readings.}
+
+  \printbibliography
+
+\end{frame}
+
+\subsection<presentation>*{Join}
+\begin{frame}
+  \frametitle{Join}
+  \begin{itemize}
+    \item ThuThesis: \url{https://github.com/xueruini/thuthesis}
+    \item ThuSlides
+    \item TUNA: \url{http://tuna.tsinghua.edu.cn/}
+  \end{itemize}
+\end{frame}
+
+\end{document}
+%%% vim: set sw=2 isk+=\: et tw=70 formatoptions+=mB:
