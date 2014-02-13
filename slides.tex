@@ -219,6 +219,7 @@ basicstyle=\ttfamily\color{gray},%
   Not for new paragraph. Use blank lines instead.
 \item
   Not commonly used for newline in paragraph. Let \TeX\ hyphen.
+  (|\-| to guide hyphenation)
 \pause
 \item
   Used inside \lstinline{\title} to tune word breaking.
@@ -310,7 +311,7 @@ basicstyle=\ttfamily\color{gray},%
       $\mathrm{e}^{\mathrm{i}\pi}+1=0$
   \end{itemize}
 \item
-  Proper brackets size: |\left( \sum ... \right)|
+  Proper bracket size: |\left( \sum ... \right)|
 \end{itemize}
 
 \end{frame}
@@ -326,6 +327,8 @@ basicstyle=\ttfamily\color{gray},%
   Environments: \env{multline}, \env{split}, \env{array}
 \item
   Match bracket size: |\vphantom|
+\item
+  Details: \pkg{mathmode} documentation
 \end{itemize}
 
 \end{frame}
@@ -412,7 +415,7 @@ doi = {10.1145/1964179.1964185},
 
 \end{frame}
 
-\begin{frame}[fragile]\frametitle{Deal with bachelor thesis, patent, and others}
+\begin{frame}[fragile]\frametitle{Deal with bachelor thesis, patent, etc.}
 
 \begin{itemize}
   \item Bachelor's thesis: |masterthesis| entry with |type = {Bachelor's Thesis}|
