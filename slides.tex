@@ -212,16 +212,47 @@ basicstyle=\ttfamily\color{gray},%
 \section{Introduction}
 
 % LaTeX
-% concepts/terms
-% CJK
-% content style separation
+\begin{frame}[fragile]{\TeX\ and \LaTeX}
+  \begin{itemize}
+    \item \LaTeX{}: A Document Preparation System
+      \begin{itemize}
+        \item Created by Leslie Lamport in early 1980s
+        \item Based on \TeX\ by Donald E.~Knuth
+        \item Not word processor, not WYSIWYG, compilation
+        \item Free and open source (LPPL)
+      \end{itemize}
+    \item Concepts and Terms
+      \begin{itemize}
+        \item Document class: generic template (article, book, report)
+        \item Packages: add-ons (\pkg{graphicx}, \pkg{listings})
+        \item Environment: |\begin{abstract}...\end{abstract}|
+        \item Command: |\section{Introduction}|
+        \item Engine: \hologo{XeTeX}, |xelatex|
+        \item Format: LaTeX, Plain TeX, ConTeXt
+      \end{itemize}
+  \end{itemize}
+\end{frame}
 
-\begin{frame}[fragile]\frametitle{Chinese}
+% content style separation
+\begin{frame}[fragile]{Separation of Presentation and Content}
+\begin{lstlisting}
+\documentclass{article}
+% Preamble: style configurations
+\usepackage{hyperref}
+\hypersetup{breaklinks=false}
+\begin{document}
+% Content:
+My masterpiece.
+\end{document}
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]\frametitle{Chinese 中文支持}
 
 \begin{lstlisting}
 \documentclass[CJKchecksingle]{beamer}
 \usepackage[UTF8,nofonts]{ctex}
-\renewcommand\CJKfamilydefault{\CJKsfdefault}
+\renewcommand\familydefault{\sfdefault}
 
 \setCJKmainfont[BoldFont={WenQuanYi Micro Hei},
 ItalicFont={AR PL UKai CN}]{AR PL UMing CN}
@@ -239,8 +270,23 @@ ItalicFont={AR PL UKai CN}]{AR PL UMing CN}
 \end{frame}
 \section{Compilation Errors}
 
-\section{Bad Outputs}
+% log
+\begin{frame}[fragile]{Log is your friend.}
+  \begin{itemize}
+    \item Log
+      \begin{itemize}
+        \item |.log|
+        \item package versions
+      \end{itemize}
+    \item CLI
+  \end{itemize}
+\end{frame}
 
+% typo
+
+% mismatch
+
+\section{Bad Outputs}
 
 \begin{frame}[fragile]\frametitle{Do not abuse \lstinline|\\\\|.}
 
