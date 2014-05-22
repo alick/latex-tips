@@ -1,9 +1,6 @@
 \documentclass[CJKchecksingle]{beamer}
 % pass CJKchecksingle to xeCJK
 % Author: alick<alick9188@gmail.com>
-% 带中文支持的、使用 Beamer 的幻灯片模板
-% 使用 xelatex 编译
-
 % This file is modified from a solution template for:
 
 % - Giving a talk on some subject.
@@ -24,9 +21,16 @@
 
 \mode<presentation>
 {
-\usetheme[secheader]{Boadilla}
-\setbeamercovered{transparent=5}
+\usetheme{Madrid}
 \usefonttheme[onlymath]{serif}
+\setbeamercovered{transparent=5}
+\definecolor{fedorablue}{RGB}{60,110,180}
+\definecolor{fedoradarkblue}{RGB}{41,65,114}
+\definecolor{fedoradarkgrey}{RGB}{76,76,76}
+\setbeamercolor*{palette primary}{fg=white,bg=fedorablue}
+\setbeamercolor*{palette secondary}{fg=white,bg=fedoradarkblue}
+\setbeamercolor*{palette tertiary}{fg=white,bg=fedorablue}
+\setbeamercolor*{palette quaternary}{fg=white,bg=black}
 }
 
 \usepackage{graphicx} % includegraphics support
@@ -38,46 +42,65 @@
 \usepackage[style=numeric,sorting=none,firstinits=false]{biblatex}
 \addbibresource{refs.bib}
 
+\usepackage{hyperxmp}
+\hypersetup{
+pdfauthor={Alick Zhao},
+pdfcopyright={Copyright (C) 2014 by Alick Zhao.
+Licensed under CC-BY-SA 4.0. Some rights reserved.},
+pdflicenseurl={http://creativecommons.org/licenses/by-sa/4.0/},
+}
+
 \usepackage{fontspec}
-%\usepackage[UTF8,nofonts]{ctex}
-%
-%% xeCJK conf setup
-%\punctstyle{kaiming}
-%\renewcommand\CJKfamilydefault{\CJKsfdefault} % for slides
-%
-%\setCJKmainfont[BoldFont={WenQuanYi Micro Hei},
-%ItalicFont={AR PL UKai CN}]{AR PL UMing CN}
-%\setCJKsansfont{WenQuanYi Micro Hei}
-%\setCJKmonofont{WenQuanYi Micro Hei Mono}
-%
-%\setCJKfamilyfont{zhsong}{AR PL UMing CN}
-%\setCJKfamilyfont{zhhei}{WenQuanYi Zen Hei}
-%\setCJKfamilyfont{zhkai}{AR PL UKai CN}
-%
-%\newcommand*{\songti}{\CJKfamily{zhsong}} % 宋体
-%\newcommand*{\heiti}{\CJKfamily{zhhei}}   % 黑体
-%\newcommand*{\kaishu}{\CJKfamily{zhkai}}  % 楷书
-%
+\usepackage[UTF8,nofonts]{ctex}
+
+% xeCJK conf setup
+\punctstyle{kaiming}
+\renewcommand\familydefault{\sfdefault} % for slides
+
+\setCJKmainfont[BoldFont={WenQuanYi Micro Hei},
+ItalicFont={AR PL UKai CN}]{AR PL UMing CN}
+\setCJKsansfont{WenQuanYi Micro Hei}
+\setCJKmonofont{WenQuanYi Micro Hei Mono}
+
+\setCJKfamilyfont{zhsong}{AR PL UMing CN}
+\setCJKfamilyfont{zhhei}{WenQuanYi Zen Hei}
+\setCJKfamilyfont{zhkai}{AR PL UKai CN}
+
+\newcommand*{\songti}{\CJKfamily{zhsong}} % 宋体
+\newcommand*{\heiti}{\CJKfamily{zhhei}}   % 黑体
+\newcommand*{\kaishu}{\CJKfamily{zhkai}}  % 楷书
+
 %\renewcommand\tablename{表格}
 
-\title[\LaTeX\ Notes]%
-{Notes on Using \LaTeX}
+%Workshop (training)
+
+%LaTeX can create high quality outputs, but you need to be careful to avoid common errors. I want to do an interactive workshop/training to walk through common mistakes in LaTeX usage, and more importantly talk about the correct way. I will also talk about how to troubleshoot the "mysterious" LaTeX error log.   I will use a slides, and I want the audience to have computers with LaTeX installed so it is better to be on the next day of the LaTeX talk ;)
+
+%I am a Fedora contributor, a long time LaTeX lover, and a college student.
+
+%This talk serves to improve the LaTeX skills of attendees by pointing out common errors and how to debug. It can help make LaTeX yet another productive tool for them."
+
+\title[\LaTeX\ Tips]%
+{\LaTeX\ Tips}
+\subtitle{Common Errors, How to Correct, and How to Debug}
 
 \author[alick] % (optional, use only with lots of authors)
-{Alick Zhao\\%
-\url{alick9188@gmail.com}}
+{Zhao Tao\\ \texttt{alick@fedoraproject.org}}
 
-\institute[NiuLab] % (optional, but mostly needed)
+\institute[Fedora] % (optional, but mostly needed)
 {
-NiuLab\\
-Department of Electronic Engineering\\
-Tsinghua University
+\includegraphics[width=.05\textwidth]{wu.jpg}\\
+\inst{1}Fedora Project
+\and
+\inst{2}Tsinghua University TUNA Asscociation (TUNA)
+\and
+\inst{3}Tsinghua University
 }
 % - Use the \inst command only if there are several affiliations.
 % - Keep it simple, no one is interested in your street address.
 
-\date % (optional)
-{}
+\date[FUDCon APAC 2014] % (optional)
+{May 25, 2014}
 
 \subject{LaTeX, beamer, BibTeX}
 
@@ -124,6 +147,8 @@ basicstyle=\ttfamily\color{gray},%
 
 \newcommand{\BibTeX}{\hologo{BibTeX}}
 \newcommand{\beamer}{\textsc{beamer}}
+
+\logo{\includegraphics[height=.1\textheight]{Logo_fedoralogo.png}}
 
 \begin{document}
 
