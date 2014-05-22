@@ -82,7 +82,7 @@ ItalicFont={AR PL UKai CN}]{AR PL UMing CN}
 
 \title[\LaTeX\ Tips]%
 {\LaTeX\ Tips}
-\subtitle{Common Errors, How to Correct, and How to Debug}
+\subtitle{Common Errors, How to Debug, and How to Correct}
 
 \author[alick] % (optional, use only with lots of authors)
 {Zhao Tao\\ \texttt{alick@fedoraproject.org}}
@@ -150,6 +150,9 @@ basicstyle=\ttfamily\color{gray},%
 
 \logo{\includegraphics[height=.1\textheight]{Logo_fedoralogo.png}}
 
+% Disable the navigation symbol bar.
+\beamertemplatenavigationsymbolsempty
+
 \begin{document}
 
 \begin{frame}
@@ -206,36 +209,38 @@ basicstyle=\ttfamily\color{gray},%
 %  \end{columns}
 %\end{frame}
 
+\section{Introduction}
 
-\section{Basics}
+% LaTeX
+% concepts/terms
+% CJK
+% content style separation
 
-\subsection{Paragraphs}
+\begin{frame}[fragile]\frametitle{Chinese}
 
-\begin{frame}[fragile]\frametitle{Section the contents.}
-\begin{table}[h]
-  \centering
-  \caption{Sectioning commands~\cite{leoliu}.}
-  \begin{tabular}{rlp{.6\textwidth}}
-    \hline
-    Level & Command & Comment \\
-    \hline
-    -1 & |\part| & Optional top level. \\
-    0  & |\chapter| & Top level for documentclass \pkg{report}, \pkg{book}. \\
-    1  & |\section| & Top level for documentclass \pkg{article}. \\
-    2  & |\subsection| & \\
-    3  & |\subsubsection| & Neither numbered nor shown in \pkg{report}, \pkg{book} by default.\\
-    4  & |\paragraph| & Neither numbered nor shown by default.\\
-    5  & |\subparagraph| & Neither numbered nor shown by default.\\
-    \hline
-  \end{tabular}
-\end{table}
+\begin{lstlisting}
+\documentclass[CJKchecksingle]{beamer}
+\usepackage[UTF8,nofonts]{ctex}
+\renewcommand\CJKfamilydefault{\CJKsfdefault}
 
-  \begin{itemize}
-    \item |\appendix|
-    \item Documentclass \pkg{book}: |\frontmatter|, |\mainmatter|,
-      |\backmatter|
-  \end{itemize}
+\setCJKmainfont[BoldFont={WenQuanYi Micro Hei},
+ItalicFont={AR PL UKai CN}]{AR PL UMing CN}
+\setCJKsansfont{WenQuanYi Micro Hei}
+\setCJKmonofont{WenQuanYi Micro Hei Mono}
+
+\setCJKfamilyfont{zhsong}{AR PL UMing CN}
+\setCJKfamilyfont{zhhei}{WenQuanYi Zen Hei}
+\setCJKfamilyfont{zhkai}{AR PL UKai CN}
+\newcommand*{\songti}{\CJKfamily{zhsong}}
+\newcommand*{\heiti}{\CJKfamily{zhhei}}
+\newcommand*{\kaishu}{\CJKfamily{zhkai}}
+\end{lstlisting}
+
 \end{frame}
+\section{Compilation Errors}
+
+\section{Bad Outputs}
+
 
 \begin{frame}[fragile]\frametitle{Do not abuse \lstinline|\\\\|.}
 
@@ -268,7 +273,8 @@ basicstyle=\ttfamily\color{gray},%
   \end{itemize}
 \end{frame}
 
-\subsection{Figures}
+
+% figure positioning
 
 \begin{frame}\frametitle{Insert bitmap (PNG, JPG) figures.}
 
@@ -318,7 +324,6 @@ basicstyle=\ttfamily\color{gray},%
 
 \end{frame}
 
-\subsection{Math \& Science}
 
 \begin{frame}[fragile]\frametitle{Compose math formulas.}
 
@@ -376,8 +381,6 @@ basicstyle=\ttfamily\color{gray},%
 
 \end{frame}
 
-\section{\BibTeX\ References}
-\subsection{Database}
 \begin{frame}[fragile]
   \frametitle{Do not blindly copy from websites! I}
 
@@ -440,20 +443,6 @@ doi = {10.1145/1964179.1964185},
 
 \end{frame}
 
-\begin{frame}[fragile]\frametitle{Deal with bachelor thesis, patent, etc.}
-
-\begin{itemize}
-  \item Bachelor's thesis: |masterthesis| entry with |type = {Bachelor's Thesis}|
-  \item White paper: |techreport| entry with |type = {White Paper}|
-  \item Patent, standard: \lstinline[style=cli]|IEEEtran.bst|
-    extension, \lstinline{misc} entry as fallback
-  \item Foreign references: \lstinline|note = {In Chinese.}|
-\end{itemize}
-
-\end{frame}
-
-
-\subsection{Citation}
 \begin{frame}[fragile]\frametitle{Citation}
 
 \begin{itemize}
@@ -467,8 +456,6 @@ doi = {10.1145/1964179.1964185},
 \end{itemize}
 
 \end{frame}
-
-\subsection{Compilation}
 
 \begin{frame}[fragile]\frametitle{How many times to run?}
 
@@ -489,8 +476,6 @@ doi = {10.1145/1964179.1964185},
 
 \end{frame}
 
-\section{\beamer\ Slides}
-\subsection{Basics}
 \begin{frame}[fragile]\frametitle{Fonts}
 
 \begin{itemize}
@@ -523,116 +508,6 @@ doi = {10.1145/1964179.1964185},
   \end{itemize}
 \end{frame}
 
-\begin{frame}[fragile]\frametitle{Chinese}
-
-\begin{lstlisting}
-\documentclass[CJKchecksingle]{beamer}
-\usepackage[UTF8,nofonts]{ctex}
-\renewcommand\CJKfamilydefault{\CJKsfdefault}
-
-\setCJKmainfont[BoldFont={WenQuanYi Micro Hei},
-ItalicFont={AR PL UKai CN}]{AR PL UMing CN}
-\setCJKsansfont{WenQuanYi Micro Hei}
-\setCJKmonofont{WenQuanYi Micro Hei Mono}
-
-\setCJKfamilyfont{zhsong}{AR PL UMing CN}
-\setCJKfamilyfont{zhhei}{WenQuanYi Zen Hei}
-\setCJKfamilyfont{zhkai}{AR PL UKai CN}
-\newcommand*{\songti}{\CJKfamily{zhsong}}
-\newcommand*{\heiti}{\CJKfamily{zhhei}}
-\newcommand*{\kaishu}{\CJKfamily{zhkai}}
-\end{lstlisting}
-
-\end{frame}
-
-\subsection{Long Slides}
-\begin{frame}[fragile]\frametitle{Show (current) page numbers.}
-  \begin{itemize}
-    \item |\usetheme{Boadilla} % or Madrid, AnnArbor, ...|
-    \item |\useoutertheme{infolines}|
-    \item Simple customization:
-\begin{lstlisting}
-\setbeamertemplate{footline}
-{
-  \leavevmode%
-  \hbox{%
-  \begin{beamercolorbox}[wd=\paperwidth,ht=2.25ex,dp=1ex,right]{page number in head/foot}%
-    \insertframenumber{} / \inserttotalframenumber\hspace*{2ex}
-  \end{beamercolorbox}}%
-  \vskip0pt%
-}
-\end{lstlisting}
-  \end{itemize}
-\end{frame}
-
-\subsection{Customization}
-
-\begin{frame}[fragile,allowframebreaks]\frametitle{Footnote citations?}
-% Provide \notefullcite for footnote citations.
-% cf. http://www.texdev.net/2010/03/08/biblatex-numbered-citations-as-footnotes/
-
-% NOTE: for vanilla footnote coexistence, refer to
-% http://tex.stackexchange.com/questions/20754/tuning-numbered-citations-as-footnote
-% http://tex.stackexchange.com/questions/20787/biblatex-cite-with-footnote-only-once-with-use-of-brackets
-\begin{lstlisting}
-\usepackage[style=ieee]{biblatex}
-\ExecuteBibliographyOptions{citetracker=true,sorting=none}
-\AtEveryCitekey{%
-  \clearlist{publisher}%
-  \clearfield{note}}
-
-\DeclareFieldFormat{labelnumberwidth}{\mkbibbrackets{#1}}
-
-\makeatletter
-\renewcommand\@makefntext[1]{%
-  \normalfont[\@thefnmark]\enspace #1}
-\makeatother
-
-\DeclareCiteCommand{\notefullcite}[\mkbibbrackets]
-  {\usebibmacro{cite:init}%
-   \usebibmacro{prenote}}
-  {\usebibmacro{citeindex}%
-   \usebibmacro{notefullcite}%
-   \usebibmacro{cite:comp}}
-  {}
-  {\usebibmacro{cite:dump}%
-   \usebibmacro{postnote}}
-\newbibmacro*{notefullcite}{%
-  \ifciteseen
-    {}
-    {\footnotetext[\thefield{labelnumber}]{%
-       \usedriver{}{\thefield{entrytype}}.}}}
-
-
-% Decrease the footnote size.
-\let\oldfootnotesize\footnotesize
-\renewcommand*{\footnotesize}{\oldfootnotesize\tiny}
-
-% Disable the navigation symbol bar.
-\beamertemplatenavigationsymbolsempty
-
-% Add bib database.
-\addbibresource{refs.bib}
-\end{lstlisting}
-\end{frame}
-
-\begin{frame}[fragile]\frametitle{Create new templates}
-
-\begin{itemize}
-\item
-  Background pictures: |\usebackgroundtemplate|
-\item
-  Logo: |\logo|
-\item
-  Directory structure
-\begin{lstlisting}[style=cli]
-$ ls themes/
-color  font  inner  outer  theme
-\end{lstlisting}
-\end{itemize}
-
-\end{frame}
-
 \section{Summary}
 
 \begin{frame}\frametitle{Summary}
@@ -656,7 +531,6 @@ color  font  inner  outer  theme
 
 \appendix
 \section<presentation>*{\appendixname}
-\subsection<presentation>*{References}
 
 \begin{frame}[allowframebreaks]
   \frametitle<presentation>{More readings.}
@@ -665,7 +539,20 @@ color  font  inner  outer  theme
 
 \end{frame}
 
-\subsection<presentation>*{Join}
+\begin{frame}
+  \frametitle{Ask the Web}
+  \begin{itemize}
+    \item Where to ask?
+      \begin{itemize}
+        \item tex.sx
+      \end{itemize}
+    \item How to ask?
+      \begin{itemize}
+        \item MWE
+      \end{itemize}
+  \end{itemize}
+\end{frame}
+
 \begin{frame}
   \frametitle{Join}
   \begin{itemize}
