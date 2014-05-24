@@ -340,6 +340,11 @@ l.3 \secton
     \item Overfull/Underfull |\hbox|/|\vbox|
       \begin{itemize}
         \item Unreasonable use of |\newline|
+          \begin{itemize}
+            \item Not for new paragraph. Use blank lines instead.
+            \item Not commonly used for newline in paragraph. Let \TeX\ hyphen
+              (|\-|, |\hyphenation|).
+          \end{itemize}
         \item Adjust content
         \item Use floating env for figures/tables
         \item Insert |\newpage| to tune manually
@@ -361,7 +366,7 @@ l.3 \secton
   \end{itemize}
 \end{frame}
 
-\begin{frame}[fragile]{Debugging tools}
+\begin{frame}[fragile]{More Debugging Tips}
   \begin{itemize}
     \item Complex document: bisect
       \begin{itemize}
@@ -379,23 +384,6 @@ l.3 \secton
 
 \section{Bad Outputs}
 
-\begin{frame}[fragile]\frametitle{Do not abuse \lstinline|\\\\|.}
-
-\begin{itemize}
-\item
-  Not for new paragraph. Use blank lines instead.
-\item
-  Not commonly used for newline in paragraph. Let \TeX\ hyphen.
-  (|\-| to guide hyphenation)
-\pause
-\item
-  Used inside \lstinline{\title} to tune word breaking.
-\item
-  Used inside \env{tabular}, multi-line formulas, etc.
-\end{itemize}
-
-\end{frame}
-
 \begin{frame}[fragile]\frametitle{Be careful with punctuations.}
   \begin{itemize}
     \item Quotation: |``| and |''|
@@ -403,72 +391,73 @@ l.3 \secton
       \begin{itemize}
         \item |Dr.~Zhou|
         \item |Li et al.\ proposed ...|
-        \item |... Mac OS X\@. New ...|
+        \item |... GNOME\@. New ...|
       \end{itemize}
     \item Dash: |-|, |--|, and |---|
     \item Serial comma: |... foo, bar, and baz ...|
   \end{itemize}
 \end{frame}
 
-
 % figure positioning
 
-\begin{frame}\frametitle{Insert bitmap (PNG, JPG) figures.}
+\begin{frame}[fragile]\frametitle{Figures}
 
 \begin{itemize}
-\item
-  The whole figure file will be swallowed in the PDF.
-\item
-  DPI mismatch leads to blurring.
-\pause
-\item
-  Solutions~\cite{hoeppner,blurry,blurry2}:
+  \item Positioning
+    \begin{itemize}
+      \item |[!h]|, |[H]| $\rightarrow$ |[hbtp]|
+    \end{itemize}
+  \item Bitmap figures
+    \begin{itemize}
+      \item
+        The whole figure file will be swallowed in the PDF.
+      \item
+        DPI mismatch leads to blurring.
+      \item
+        Solutions~\cite{hoeppner,blurry,blurry2}:
+        \begin{itemize}
+          \item
+            Line drawings: \alert{vector graphics}, high dpi PNG
+          \item
+            Photos: (high resolution) JPEG should be OK
+          \item
+            Screenshots: zoom in first
+        \end{itemize}
+    \end{itemize}
+\end{itemize}
+
+\end{frame}
+
+
+\begin{frame}[fragile]\frametitle{More Figure Tips}
   \begin{itemize}
-    \item
-      Line drawings: \alert{vector graphics}, high dpi PNG
-    \item
-      Photos: (high resolution) JPEG should be OK
-    \item
-      Screenshots: zoom in first
+    \item Specify figure/table/minipage size
+      \begin{itemize}
+        \item
+          Prefer relative length to absolute length.
+        \item
+          Prefer \lstinline{.45\textwidth} to \lstinline{2in}, \lstinline{3cm}.
+        \item
+          \lstinline{\textheight}, \lstinline{\paperheight}, \lstinline{\paperwidth}
+      \end{itemize}
+    \item Subfigures
+
+      \begin{itemize}
+        \item
+          Prefer \pkg{subcaption} package.
+        \item
+          Use \pkg{subfig} with \pkg{IEEEtran} articles.
+        \item
+          Do not use deprecated \pkg{subfigure} package.
+      \end{itemize}
   \end{itemize}
-\end{itemize}
-
-\end{frame}
-
-\begin{frame}[fragile]\frametitle{Specify figure/table/minipage size.}
-
-\begin{itemize}
-\item
-  Prefer relative length to absolute length.
-\item
-  Prefer \lstinline{.45\textwidth} to \lstinline{2in}, \lstinline{3cm}.
-\item
-  \lstinline{\textheight}, \lstinline{\paperheight}, \lstinline{\paperwidth}
-\end{itemize}
-
-\end{frame}
-
-\begin{frame}[fragile]\frametitle{Deal with subfigures.}
-
-\begin{itemize}
-\item
-  Prefer \pkg{subcaption} package.
-\item
-  Use \pkg{subfig} with \pkg{IEEEtran} articles.
-\item
-  Do not use deprecated \pkg{subfigure} package.
-\end{itemize}
 
 \end{frame}
 
 
-\begin{frame}[fragile]\frametitle{Compose math formulas.}
+\begin{frame}[fragile]\frametitle{Math Formulas}
 
 \begin{itemize}
-\item
-  Variables: use common notations, introduce them
-\item
-  Vectors/Matrices in bold: \pkg{bm}, \lstinline{\mathbf}
 \item
   Non-variables should \alert{not} be \textit{italic}:
   \begin{itemize}
@@ -483,19 +472,21 @@ l.3 \secton
 
 \end{frame}
 
-\begin{frame}[fragile]\frametitle{Handle long math formulas.}
+\begin{frame}[fragile]\frametitle{Long Math Formulas}
 
 \begin{itemize}
 \item
   Define intermediate variables/functions to rephrase.
 \item
   Divide it into multiple lines.
-\item
-  Environments: \env{multline}, \env{split}, \env{array}
-\item
-  Match bracket size: |\vphantom|
-\item
-  Details: \pkg{mathmode} documentation
+  \begin{itemize}
+    \item
+      Environments: \env{multline}, \env{split}, \env{array}
+    \item
+      Match bracket size: |\vphantom|
+    \item
+      Details: \pkg{mathmode} documentation
+  \end{itemize}
 \end{itemize}
 
 \end{frame}
@@ -519,10 +510,8 @@ l.3 \secton
 \end{frame}
 
 \begin{frame}[fragile]
-  \frametitle{Do not blindly copy from websites! I}
+  \frametitle{Common Bib Errors~\cite{biberrors}}
 
-  \begin{itemize}
-    \item Common errors~\cite{biberrors}:
       \begin{itemize}
         \item<1->
           Author names: \lstinline[style=wrong]|Owens, J.D.|
@@ -544,12 +533,10 @@ booktitle={Intelligent Vehicles Symposium (IV), 2011 IEEE},
 booktitle = {Proceedings of the 2011 IEEE Intelligent Vehicles Symposium},
 \end{lstlisting}
 \end{itemize}
-\end{itemize}
 \end{frame}
+
 \begin{frame}[fragile]
-  \frametitle{Do not blindly copy from websites! II}
-  \begin{itemize}
-    \item Common errors continued:
+  \frametitle{Common Bib Errors Continued}
       \begin{itemize}
         \item
           Month, pages
@@ -564,20 +551,17 @@ pages={195--200},
 \pause
         \item
           DOI, URL
-\begin{lstlisting}[style=wrong]
+\begin{lstlisting}[style=wrong,breaklines=false]
 url = {http://doi.acm.org/10.1145/1964179.1964185},
 doi = {http://doi.acm.org/10.1145/1964179.1964185},
 \end{lstlisting}
 \begin{lstlisting}
 doi = {10.1145/1964179.1964185},
 \end{lstlisting}
-      \end{itemize}
-    \pause
     \item
       Auto fix: \href{https://github.com/alick9188/fixbib}{FixBib
       for Greasemonkey}
-  \end{itemize}
-
+      \end{itemize}
 \end{frame}
 
 \begin{frame}[fragile]\frametitle{Citation}
@@ -587,9 +571,9 @@ doi = {10.1145/1964179.1964185},
   Use tie (tilde, nbsp): \lstinline|Text goes~\cite{texbook}.|
 \item
   Cite multiple references: |\cite{ref1,ref2,ref3}|
-\pause
 \item
-  Citations in brackets are \alert{not} text words.
+  Citations are \alert{not} text words: |in [1]| $\rightarrow$
+  |in Author Foo's work [1]|
 \end{itemize}
 
 \end{frame}
@@ -613,7 +597,7 @@ doi = {10.1145/1964179.1964185},
 
 \end{frame}
 
-\begin{frame}[fragile]\frametitle{Fonts}
+\begin{frame}[fragile]\frametitle{Fonts in Slides}
 
 \begin{itemize}
 \item
@@ -638,9 +622,11 @@ doi = {10.1145/1964179.1964185},
 
 \end{frame}
 
-\begin{frame}[fragile]\frametitle{Fragile frames}
+\begin{frame}[fragile]\frametitle{Slides with Code Snippets}
   \begin{itemize}
     \item |\verb+Lorem Lipsum+|, \env{verbatim}
+    \item |\lstinline+Lorem Lipsum+|, \env{lstlisting}
+    \item Fragile frames
     \item |\begin{frame}[fragile] ... \end{frame}|
   \end{itemize}
 \end{frame}
@@ -650,19 +636,13 @@ doi = {10.1145/1964179.1964185},
 \begin{frame}\frametitle{Summary}
 
 \begin{itemize}
+  \item Log is your friend while debugging.
 \item
   Details matter for aesthetic and high quality documents.
-\pause
 \item
-  \LaTeX\ is evolving. The old will be replaced by the new.
-\pause
-\item
-  Some work is tedious. Try automate it!
-\pause
-\item
-  Happy \TeX{}ing!
+  Some work is tedious. Try to automate it!
 \end{itemize}
-\nocite{l2tabu,elements}
+\nocite{elements}
 
 \end{frame}
 
@@ -681,11 +661,13 @@ doi = {10.1145/1964179.1964185},
   \begin{itemize}
     \item Where to ask?
       \begin{itemize}
-        \item tex.sx
+        \item \url{http://tex.stackexchange.com}
+        \item \url{http://www.latex-community.org/}
       \end{itemize}
     \item How to ask?
       \begin{itemize}
-        \item MWE
+        \item Describe your environment, setup
+        \item Minimal Working Example (MWE)
       \end{itemize}
   \end{itemize}
 \end{frame}
@@ -694,8 +676,8 @@ doi = {10.1145/1964179.1964185},
   \frametitle{Join}
   \begin{itemize}
     \item ThuThesis: \url{https://github.com/xueruini/thuthesis}
-    \item ThuSlides
     \item TUNA: \url{http://tuna.tsinghua.edu.cn/}
+    \item Fedora: \url{http://fedoraproject.org/join-fedora}
   \end{itemize}
 \end{frame}
 
